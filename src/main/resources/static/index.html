@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html>
 <body>
+<h2>WebSocket Test</h2>
+<script>
+    let socket = new WebSocket("ws://localhost:8080/ws");
 
+    socket.onopen = () => {
+        console.log("Connected to WebSocket");
+        socket.send("Hello WebSocket!");
+    };
+
+    socket.onmessage = (event) => {
+        console.log("Message from server:", event.data);
+        alert("Received: " + event.data);
+    };
+
+    socket.onerror = (err) => {
+        console.error("WebSocket error:", err);
+    };
+</script>
 </body>
 </html>
